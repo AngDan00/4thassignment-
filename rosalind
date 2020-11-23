@@ -22,3 +22,18 @@ for i in rev:
     print(i,end='')
 
 4)gc
+from collections import Counter
+from Bio import SeqIO
+lst=[]
+d={}
+with open("rosalind_gc.txt", "r") as handle:
+    for seq in SeqIO.parse(handle, "fasta"):
+        id=seq.id
+        seq=seq.seq
+        dseq=Counter(seq)
+        gc=(dseq.get('G')+dseq.get('C'))/len(seq)*100
+        lst.append(gc)
+        maxgc=max(lst)
+        d[gc]=id
+print(d.get(maxgc))
+print(max(d.keys()))
