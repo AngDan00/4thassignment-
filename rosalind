@@ -1,0 +1,24 @@
+1)dna
+from collections import Counter
+file=open("rosalind_dna.txt")
+line=file.readlines()
+dna=sorted(list(map(str,line[0].strip())))
+dna=Counter(dna)
+for i in dna.values():
+    print(i,end=' ')
+    
+2)rna
+file=open("rosalind_rna.txt")
+line=file.readlines()
+print(str(line[0]).replace('T','U'))
+
+3)revc
+complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A'} 
+file=open("rosalind_revc.txt")
+line=file.readlines()
+rna=list(map(str,line[0].strip()))[::-1]
+rev=[complement[i] for i in rna]
+for i in rev:
+    print(i,end='')
+
+4)gc
