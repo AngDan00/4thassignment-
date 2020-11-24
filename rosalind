@@ -37,3 +37,12 @@ with open("rosalind_gc.txt", "r") as handle:
         d[gc]=id
 print(d.get(maxgc))
 print(max(d.keys()))
+
+5)subs
+file=open("rosalind_subs.txt")
+line=file.readlines()
+string=str(line[0])
+sub_string=str(line[1])
+for i in range(len(string)):
+    if string[i:].startswith(sub_string):
+        print(i+1,end=' ')
