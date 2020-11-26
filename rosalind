@@ -60,3 +60,40 @@ with open("rosalind_cons.txt", "r") as handle:
                 counter+=1
         print(mtx)
     
+7)hamm
+file=open("rosalind_hamm.txt")
+line=file.readlines()
+string1=str(line[0].strip())
+string2=str(line[1].strip())
+mis = 0
+L = len(string1)
+for i in range(L):
+    if len(string1)==len(string2):
+        if string1[i] != string2[i]:
+            mis += 1
+print(mis)
+
+8)lcsm
+from Bio import SeqIO
+lst=[]
+with open("rosalind_lcsm.txt", "r") as handle:
+    for seq in SeqIO.parse(handle, "fasta"):
+        seq=str(seq.seq)
+        lst.append(seq)
+    motifs=''
+    sorted(lst, key=len)
+    shortseq=lst[0]
+    compseq=lst[1:]
+    for i in range(len(shortseq)):
+        for j in range(i,len(shortseq)):
+            presente=False
+            subs=shortseq[i:j+1]
+            for sequences in compseq:
+                if subs in sequences:
+                    presente=True
+                else:
+                    presente=False
+                    break
+            if presente and len(subs)>len(motifs):
+                 motifs=subs
+    print(motifs)
