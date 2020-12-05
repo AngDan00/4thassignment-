@@ -50,6 +50,7 @@ for i in range(len(string)):
 import numpy as np
 from Bio import SeqIO
 lst=[]
+cons=[]
 with open("rosalind_cons.txt", "r") as handle:
     for seq in SeqIO.parse(handle, "fasta"):
         id=seq.id
@@ -57,21 +58,35 @@ with open("rosalind_cons.txt", "r") as handle:
         lst.append(sequ)
 mtx=np.array(lst)
 mtx=mtx.transpose()
-A,C,G,T=['A:'],['C:'],['G:'],['T:']
+A,C,G,T=[],[],[],[]
 for i in mtx:
     A.append(list(i).count('A'))
     C.append(list(i).count('C'))
     G.append(list(i).count('G'))
     T.append(list(i).count('T'))
-mtx=[]
-mtx.append(A)
-mtx.append(C)
-mtx.append(G)
-mtx.append(T)
-profile=np.array(mtx)
-print(profile)
+profile=[]
+profile.append(A)
+profile.append(C)
+profile.append(G)
+profile.append(T)
+profile=np.array(profile)
+for j in range(len(mtx[0])+1):
+    transp = list(profile.transpose()[j])
+    if transp.index(max(transp)) == 0:
+        cons.append('A')
+    if transp.index(max(transp)) == 1:
+        cons.append('C')
+    if transp.index(max(transp)) == 2:
+        cons.append('G')
+    if transp.index(max(transp)) == 3:
+        cons.append('T')
 
-    
+print(''.join(cons))
+print('A:',*A)
+print('C:',*C)
+print('G:',*G)
+print('T:',*T)
+
 7)hamm
 file=open("rosalind_hamm.txt")
 line=file.readlines()
