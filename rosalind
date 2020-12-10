@@ -124,3 +124,37 @@ with open("rosalind_lcsm.txt", "r") as handle:
             if presente and len(subs)>len(motifs):
                  motifs=subs
     print(motifs)
+ 
+9)revs
+file=open('rosalind_revc.txt')
+line=file.readlines()
+seq=str(line[1].strip())
+complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A'}
+lst=[]
+lst1=[]
+rna=seq[::-1]
+rev=([complement[x] for x in rna])
+rev=''.join(rev)
+for i in range(len(seq)):
+    for j in range(i,len(seq)):
+        match=False
+        subs=rev[i:j+1]
+        if 3<len(subs)<13 and len(subs)%2==0:
+            lst.append(subs)
+
+for i in lst:
+    if i in seq:
+        for j in range(len(seq)):
+            if seq[j:].startswith(i):
+                lst1.append([j+1,len(i)])
+print(lst1)
+
+10)fib
+file = open('rosalind_fib.txt', 'r')
+line = file.readlines()
+l = line[0].split()
+n, k = int(l[0]), int(l[1])
+p, c = 1,1
+for x in range(n-1):
+    c, p = p, p+(c*k)
+print(c)
