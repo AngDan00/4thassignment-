@@ -247,3 +247,13 @@ for i in perm:
     print(*i)
     
  13)lexf
+ from itertools import product
+file=open("rosalind_lexf.txt")
+line=file.readlines()
+stuff=str(line[0].strip())
+stuff=stuff.replace(' ','')
+L=int(line[1])
+for perm in product(stuff, repeat=L): 
+    print("".join(perm))
+    
+ 14)
