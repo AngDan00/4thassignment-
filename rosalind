@@ -227,3 +227,23 @@ with open("rosalind_splc.txt", "r") as handle:
                     protein+= table[codon] 
         return protein 
     print(translate(dna))
+    
+12)perm
+from itertools import permutations
+import math
+file=open('rosalind_perm.txt')
+line=file.readlines()
+n=int(line[0])
+lst=[]
+i=0
+a=0
+print(math.factorial(n))
+while i<n:
+    i+=1
+    lst.append(i)
+perm=permutations(lst)
+for i in perm:
+    a=a+1
+    print(*i)
+    
+ 13)lexf
