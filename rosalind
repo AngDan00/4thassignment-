@@ -233,7 +233,7 @@ for i in perm:
     print(*i)
     
  13)lexf
- from itertools import product
+from itertools import product
 file=open("rosalind_lexf.txt")
 line=file.readlines()
 stuff=str(line[0].strip())
