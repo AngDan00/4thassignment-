@@ -51,11 +51,8 @@ import numpy as np
 from Bio import SeqIO
 lst=[]
 cons=[]
-with open("rosalind_cons.txt", "r") as handle:
-    for seq in SeqIO.parse(handle, "fasta"):
-        id=seq.id
-        sequ=seq.seq
-        lst.append(sequ)
+for sequ in SeqIO.parse("rosalind_cons.txt", "fasta"):
+    lst.append((sequ.seq))
 mtx=np.array(lst)
 mtx=mtx.transpose()
 A,C,G,T=[],[],[],[]
@@ -69,23 +66,24 @@ profile.append(A)
 profile.append(C)
 profile.append(G)
 profile.append(T)
-profile=np.array(profile)
-for j in range(len(mtx[0])+1):
-    transp = list(profile.transpose()[j])
-    if transp.index(max(transp)) == 0:
+transposeprofile=np.array(profile).transpose()
+cons = []
+for m in range(0,len(profile[0])):
+    p = list(transposeprofile[m])
+    if p.index(max(p)) == 0:
         cons.append('A')
-    if transp.index(max(transp)) == 1:
+    elif p.index(max(p)) == 1:
         cons.append('C')
-    if transp.index(max(transp)) == 2:
+    elif p.index(max(p)) == 2:
         cons.append('G')
-    if transp.index(max(transp)) == 3:
+    elif p.index(max(p)) == 3:
         cons.append('T')
-
 print(''.join(cons))
 print('A:',*A)
 print('C:',*C)
 print('G:',*G)
 print('T:',*T)
+
 
 7)hamm
 file=open("rosalind_hamm.txt")
